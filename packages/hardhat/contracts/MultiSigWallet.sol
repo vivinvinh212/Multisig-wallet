@@ -155,7 +155,7 @@ contract MultiSigWallet {
             } else {
                 owners.pop();
                 for (uint256 j = i; j < ownersLength - 1; ) {
-                    owners.push(poppedOwners[j + 1]); // shout out to moltam89!! https://github.com/austintgriffith/maas/pull/2/commits/e981c5fa5b4d25a1f0946471b876f9a002a9a82b
+                    owners.push(poppedOwners[j + 1]);
                     unchecked {
                         ++j;
                     }
