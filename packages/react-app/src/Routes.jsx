@@ -53,7 +53,7 @@ const Routes = ({
                           <Button onClick={() => setIsCreateModalVisible(true)} type="link" style={{ padding: 0 }}>
                             Create
                           </Button>{" "}
-                          or select your Multi-Sig ✨
+                          or select your MultiSig ✨
                         </>
                       }
                       type="info"

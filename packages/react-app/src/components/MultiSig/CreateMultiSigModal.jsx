@@ -318,7 +318,7 @@ function CreateMultiSigModal({
 
       <Modal
         key={address}
-        title="Create Multi-Sig Wallet"
+        title="Create a MultiSig Wallet"
         visible={isCreateModalVisible}
         onCancel={handleCancel}
         destroyOnClose
@@ -358,8 +358,8 @@ function CreateMultiSigModal({
           <CreateModalSentOverlay
             txError={txError}
             txSuccess={txSuccess}
-            pendingText="Creating Multi-Sig"
-            successText="Multi-Sig Created"
+            pendingText="Creating MultiSig"
+            successText="MultiSig Created"
             errorText="Transaction Failed"
           />
         )}
