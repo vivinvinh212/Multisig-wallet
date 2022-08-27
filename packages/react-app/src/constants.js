@@ -1,14 +1,14 @@
 // MY INFURA_ID, SWAP IN YOURS FROM https://infura.io/dashboard/ethereum
 // export const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
-export const INFURA_ID = "d7d49f3bcbd943b6bceb4a7549cd1bb0";
+export const INFURA_ID = "67b037b543f242af9b784f1f56abe720";
 
 // MY ETHERSCAN_ID, SWAP IN YOURS FROM https://etherscan.io/myapikey
-export const ETHERSCAN_KEY = "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
+export const ETHERSCAN_KEY = "4Y1DVK8MD16D43AP7JP4A6TBWD581JUCBJ";
 
 // BLOCKNATIVE ID FOR Notify.js:
 export const BLOCKNATIVE_DAPPID = "0b58206a-f3c0-4701-a62f-73c7243e8c77";
 
-export const ALCHEMY_KEY = "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
+export const ALCHEMY_KEY = "KkFi3S8rZ_Q5Oq46yyFfeIiEQaO9VjxW";
 
 export const NETWORKS = {
   localhost: {
@@ -22,7 +22,7 @@ export const NETWORKS = {
     name: "mainnet",
     color: "#ff8b9e",
     chainId: 1,
-    rpcUrl: "https://eth-mainnet.g.alchemy.com/v2/o-vVF_-DyzQ4jc8vyIfpcLnWrNZTdkF1", //"https://rpc.scaffoldeth.io:48544",//`https://mainnet.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: "https://eth-mainnet.g.alchemy.com/v2/KkFi3S8rZ_Q5Oq46yyFfeIiEQaO9VjxW", //"https://rpc.scaffoldeth.io:48544",//`https://mainnet.infura.io/v3/${INFURA_ID}`,
     blockExplorer: "https://etherscan.io/",
   },
   gnosis: {
