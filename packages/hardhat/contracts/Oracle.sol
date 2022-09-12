@@ -34,28 +34,28 @@ contract Oracle {
         return price;
     }
 
-    //Returns the latest Supply info
-    function getWBTCSupply() public view returns (uint256) {
-        return WBTC.totalSupply();
-    }
+    // //Returns the latest Supply info
+    // function getWBTCSupply() public view returns (uint256) {
+    //     return WBTC.totalSupply();
+    // }
 
-    //Returns the latest Reserves info
-    function getWBTCLatestReserves() public view returns (int) {
-        (
-            ,
-            /* uint80 roundID */
-            int answer, /* uint startedAt */ /* uint updatedAt */ /* uint80 answeredInRound */
-            ,
-            ,
+    // //Returns the latest Reserves info
+    // function getWBTCLatestReserves() public view returns (int) {
+    //     (
+    //         ,
+    //         /* uint80 roundID */
+    //         int answer, /* uint startedAt */ /* uint updatedAt */ /* uint80 answeredInRound */
+    //         ,
+    //         ,
 
-        ) = reservesWBTC.latestRoundData();
-        return answer;
-    }
+    //     ) = reservesWBTC.latestRoundData();
+    //     return answer;
+    // }
 
-    //Determines if supply has exceeded reserves
-    function checkWBTCReserves() public view returns (bool) {
-        return getWBTCLatestReserves() >= int(getWBTCSupply());
-    }
+    // //Determines if supply has exceeded reserves
+    // function checkWBTCReserves() public view returns (bool) {
+    //     return getWBTCLatestReserves() >= int(getWBTCSupply());
+    // }
 
     function checkETHPrice(uint upperThreshold, uint lowerThreshold)
         public
@@ -63,7 +63,7 @@ contract Oracle {
         returns (bool)
     {
         return
-            getETHLatestPrice() < int(upperThreshold) &&
-            getETHLatestPrice() > int(lowerThreshold);
+            getETHLatestPrice() > int(upperThreshold) &&
+            getETHLatestPrice() < int(lowerThreshold);
     }
 }
