@@ -305,9 +305,9 @@ contract MultiSigWalletTest {
         // updateSignaturesRequired(1);
         // 3. Automatically distribute funds equally to recipients address (owners) if funds are over withdraw balance
         if (balance(address(this)) >= withdrawnBalance) {
-            float dividends = balance(address(this)/owners.length;
-            for(int i = 0; i <owners.length; i++){
-                (bool success, ) = address(this).call{value: dividends};
+            uint dividends = balance(address(this)) / owners.length;
+            for (int i = 0; i < owners.length; i++) {
+                (bool success, ) = msg.sender.call{value: dividends};
                 require(success, "transfer failed");
             }
         }
