@@ -63,7 +63,7 @@ contract Oracle {
         returns (bool)
     {
         return
-            getETHLatestPrice() > int(upperThreshold) &&
+            getETHLatestPrice() > int(upperThreshold) ||
             getETHLatestPrice() < int(lowerThreshold);
     }
 }
