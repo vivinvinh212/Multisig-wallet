@@ -41,6 +41,8 @@ function CreateMultiSigModal({
   const [walletName, setWalletName] = useState("");
   const [preComputedAddress, setPreComputedAddress] = useState("");
   const [isWalletExist, setIsWalletExist] = useState(false);
+  const [lower, setLower] = useState(undefined);
+  const [upper, setUpper] = useState(undefined);
 
   useEffect(() => {
     if (address) {
@@ -427,6 +429,22 @@ function CreateMultiSigModal({
               mode="USD"
               value={amount}
               onChange={setAmount}
+            />
+          </div>
+          <div style={{ width: "90%" }}>
+            <InputNumber
+              style={{ width: "100%" }}
+              placeholder="Upper threshold"
+              value={upper}
+              onChange={setUpper}
+            />
+          </div>
+          <div style={{ width: "90%" }}>
+            <InputNumber
+              style={{ width: "100%" }}
+              placeholder="Lower threshold"
+              value={lower}
+              onChange={setLower}
             />
           </div>
         </div>
