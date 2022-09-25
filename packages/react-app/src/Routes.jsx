@@ -66,7 +66,7 @@ const Routes = ({
                 <Row style={{ marginTop: 40 }}>
                   <Col span={12} offset={6}>
                     <Alert
-                      message={<> Sorry multisig not awailable on this network 😥 ( please change the network) </>}
+                      message={<> Sorry multisig not available on this network 😥 ( please change the network) </>}
                       type="error"
                     />
                   </Col>
