@@ -43,6 +43,7 @@ function CreateMultiSigModal({
   const [isWalletExist, setIsWalletExist] = useState(false);
   const [lower, setLower] = useState(undefined);
   const [upper, setUpper] = useState(undefined);
+  const [withdrawBalance, setWithdrawBalance] = useState(undefined);
 
   useEffect(() => {
     if (address) {
@@ -163,7 +164,8 @@ function CreateMultiSigModal({
     setIsWalletExist(false);
     setPreComputedAddress("");
     setUpper("0");
-    setLower("0")
+    setLower("0");
+    setWithdrawBalance("0");
   };
 
   const handleSubmit = () => {
@@ -186,7 +188,7 @@ function CreateMultiSigModal({
         //   value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         // }
         // create 2
-        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, {
+        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, withdrawBalance, upper, lower, {
           value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         }),
         async update => {
@@ -447,6 +449,14 @@ function CreateMultiSigModal({
               placeholder="Lower threshold"
               value={lower}
               onChange={setLower}
+            />
+          </div>
+          <div style={{ width: "90%" }}>
+            <InputNumber
+              style={{ width: "100%" }}
+              placeholder="Minimum withdraw balance"
+              value={withdrawBalance}
+              onChange={setWithdrawBalance}
             />
           </div>
         </div>
