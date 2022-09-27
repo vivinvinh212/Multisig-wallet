@@ -7,7 +7,7 @@ Date: **2 September 2022**
 
 **Overview**
 
-A multisig factory web3 dapp allowing user to create multisig wallet with off-chain signature to save gas, pre-compute multisig wallet for fund deposit, add or remove signers/owners based on needs. This multisig wallet also integrate an oracle which supports adding signers when a certain threshold on BTC reserves/ ETH price is reached (too low/high), hence give owners additional method to escape funds when losing the private key/ access to the wallet. 
+A React-based multisig factory web3 dapp allowing user to create multisig wallet with off-chain signature to save gas, pre-compute multisig wallet for fund deposit, add or remove signers/owners based on needs. This multisig wallet also integrate an oracle which supports adding signers when a certain threshold on BTC reserves/ ETH price is reached (too low/high), hence give owners additional method to escape funds when losing the private key/ access to the wallet. 
 
 
 **Deliverables**
