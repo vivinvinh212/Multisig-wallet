@@ -5,12 +5,12 @@ Author: **Vinh Le**
 Date: **2 September 2022**
 
 
-**Overview**
+### Overview
 
 A React-based multisig factory web3 dapp allowing user to create multisig wallet with off-chain signature to save gas, pre-compute multisig wallet for fund deposit, add or remove signers/owners based on needs. This multisig wallet also integrate an oracle which supports adding signers when a certain threshold on BTC reserves/ ETH price is reached (too low/high), hence give owners additional method to escape funds when losing the private key/ access to the wallet. 
 
 
-**Deliverables**
+### Deliverables
 
 1.	Web App: A user-friendly multisig factory web application that allows users to:
 
@@ -57,7 +57,7 @@ A React-based multisig factory web3 dapp allowing user to create multisig wallet
         iii.	Return boolean for comparisons to aid in signing conditional logics of Multisig wallet
 
 
-**Workflow Visual**
+### Workflow Visual
 
 ![image](https://user-images.githubusercontent.com/83176944/192600231-b245fc40-dc22-4124-9890-23e0461ce8fb.png)
 
@@ -67,3 +67,27 @@ This project was made possible with the support of scaffold-eth public template 
 - Live app: http://absorbing-bird.surge.sh/
 
 - Verified rinkeby contract: https://goerli.etherscan.io/address/0x800Ae5E4B1371123F00A94a8Ae69df7B0855cD53
+
+### Usage
+
+#### Clone repo
+`git clone https://github.com/vivinvinh212/Multisig-wallet`
+#### Install dependencies
+`yarn install`
+#### Deploy contract on network 
+`yarn deploy --network NETWORK`
+#### Verify contract on network
+`yarn verify --network NETWORK`
+
+### Run project
+
+#### 1. Start front end  
+`yarn start`
+#### 2. Start backend
+`yarn backend`
+#### 3. Run local chain
+`yarn chain`
+#### 4. Deploy contract locally
+`yarn deploy`
+
+
