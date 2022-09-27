@@ -59,6 +59,10 @@ A multisig factory web3 dapp allowing user to create multisig wallet with off-ch
 
 **Workflow Visual**
 
+![image](https://user-images.githubusercontent.com/83176944/192600231-b245fc40-dc22-4124-9890-23e0461ce8fb.png)
+
+**Acknowledgement**
+This project was made possible with the support of scaffold-eth public template and examples of multisig functions
 
 - Live app: http://absorbing-bird.surge.sh/
 
