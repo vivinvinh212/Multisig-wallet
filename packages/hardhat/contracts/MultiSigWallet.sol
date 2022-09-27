@@ -89,9 +89,7 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         uint256 _chainId,
         address[] calldata _owners,
         uint256 _signaturesRequired,
-        uint _withdrawnBalance,
-        uint _upperThreshold,
-        uint _lowerThreshold
+        uint[] memory _threshold
     )
         public
         payable
@@ -119,9 +117,8 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         }
 
         chainId = _chainId;
-        upperThreshold = _upperThreshold;
-        lowerThreshold = _lowerThreshold;
-        withdrawnBalance = _withdrawnBalance;
+        upperThreshold = _threshold[0];
+        lowerThreshold = _threshold[1];
         oracle = new Oracle();
     }
 

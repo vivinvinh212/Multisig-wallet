@@ -25,6 +25,13 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     waitConfirmations: 5,
   });
 
+
+  console.log(
+    "MultiSig factory deployed at =>",
+    MultiSigFactoryDeployed.address
+  );
+
+
   // const MultiSigWalletDeployed = await deploy("MultiSigWallet", {
   //   from: deployer,
   //   args: [
@@ -41,11 +48,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //   "MultiSig wallet deployed at => ",
   //   MultiSigWalletDeployed.address
   // );
-
-  console.log(
-    "MultiSig factory deployed at =>",
-    MultiSigFactoryDeployed.address
-  );
 
   // Getting a previously deployed contract
   // const multiSigFactory = await ethers.getContract("MultiSigFactory", deployer);
