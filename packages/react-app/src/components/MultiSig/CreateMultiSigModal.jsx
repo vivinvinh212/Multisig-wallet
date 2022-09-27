@@ -188,7 +188,7 @@ function CreateMultiSigModal({
         //   value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         // }
         // create 2
-        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, withdrawBalance, [upper, lower], {
+        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, [upper, lower], {
           value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         }),
         async update => {
@@ -451,14 +451,14 @@ function CreateMultiSigModal({
               onChange={setLower}
             />
           </div>
-          <div style={{ width: "90%" }}>
+          {/* <div style={{ width: "90%" }}>
             <InputNumber
               style={{ width: "100%" }}
               placeholder="Minimum withdraw balance"
               value={withdrawBalance}
               onChange={setWithdrawBalance}
             />
-          </div>
+          </div> */}
         </div>
       </Modal>
     </>
