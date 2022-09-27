@@ -80,25 +80,18 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         _;
     }
 
-    constructor(
-        string memory _name,
-        address _factory,
-        uint _withdrawnBalance,
-        uint _upperThreshold,
-        uint _lowerThreshold
-    ) payable {
+    constructor(string memory _name, address _factory) payable {
         name = _name;
         multiSigFactory = MultiSigFactory(_factory);
-        upperThreshold = _upperThreshold;
-        lowerThreshold = _lowerThreshold;
-        withdrawnBalance = _withdrawnBalance;
-        oracle = new Oracle();
     }
 
     function init(
         uint256 _chainId,
         address[] calldata _owners,
-        uint256 _signaturesRequired
+        uint256 _signaturesRequired,
+        uint _withdrawnBalance,
+        uint _upperThreshold,
+        uint _lowerThreshold
     )
         public
         payable
@@ -126,6 +119,10 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         }
 
         chainId = _chainId;
+        upperThreshold = _upperThreshold;
+        lowerThreshold = _lowerThreshold;
+        withdrawnBalance = _withdrawnBalance;
+        oracle = new Oracle();
     }
 
     // function callOracle() public onlySelf {
