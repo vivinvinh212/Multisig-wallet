@@ -3,6 +3,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 // import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Create2.sol";
+
 import "./MultiSigWallet.sol";
 
 //custom errors
@@ -67,7 +68,7 @@ contract MultiSigFactory {
         uint256 _chainId,
         address[] calldata _owners,
         uint256 _signaturesRequired,
-        string calldata _name // uint _threshold
+        string calldata _name
     ) public payable {
         uint256 id = numberOfMultiSigs();
 

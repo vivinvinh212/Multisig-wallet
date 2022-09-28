@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
-pragma experimental ABIEncoderV2;
 
+// never forget the OG simple sig wallet: https://github.com/christianlundkvist/simple-multisig/blob/master/contracts/SimpleMultiSig.sol
+
+pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "./MultiSigFactory.sol";
 import "./Oracle.sol";
@@ -19,11 +21,10 @@ error NOT_SELF();
 error NOT_FACTORY();
 error TX_FAILED();
 
-contract MultiSigWallet is KeeperCompatibleInterface {
+contract MultiSigWallet {
     using ECDSA for bytes32;
     MultiSigFactory private multiSigFactory;
     uint256 public constant factoryVersion = 1; // <---- set the factory version for backword compatiblity for future contract updates
-    // bool useOracle;
 
     event Deposit(address indexed sender, uint256 amount, uint256 balance);
     event ExecuteTransaction(
@@ -40,15 +41,12 @@ contract MultiSigWallet is KeeperCompatibleInterface {
     mapping(address => bool) public isOwner;
 
     address[] public owners;
-
+    Oracle oracle;
     uint256 public signaturesRequired;
     uint256 public nonce;
     uint256 public chainId;
     string public name;
-    // uint upperThreshold;
     uint lowerThreshold;
-    uint withdrawnBalance;
-    Oracle oracle;
 
     modifier onlyOwner() {
         if (!isOwner[msg.sender]) {
@@ -89,19 +87,8 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         uint256 _chainId,
         address[] calldata _owners,
         uint256 _signaturesRequired
-    )
-        public
-        payable
-        // uint _threshold
-        // bool _useOracle
-        onlyFactory
-        onlyValidSignaturesRequired
-    {
+    ) public payable onlyFactory onlyValidSignaturesRequired {
         signaturesRequired = _signaturesRequired;
-        // useOracle = _useOracle;
-        // if (useOracle) {
-        //     callOracle();
-        // }
         for (uint256 i = 0; i < _owners.length; ) {
             address owner = _owners[i];
             if (owner == address(0) || isOwner[owner]) {
@@ -117,18 +104,7 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         }
 
         chainId = _chainId;
-        // upperThreshold = _threshold;
-        // lowerThreshold = _threshold;
-        oracle = new Oracle();
     }
-
-    // function callOracle() public onlySelf {
-    //     Oracle oracle = new Oracle();
-    // }
-
-    // function checkOracle() public view returns (bool) {
-    //     return useOracle;
-    // }
 
     function addSigner(address newSigner, uint256 newSignaturesRequired)
         public
@@ -182,7 +158,7 @@ contract MultiSigWallet is KeeperCompatibleInterface {
             } else {
                 owners.pop();
                 for (uint256 j = i; j < ownersLength - 1; ) {
-                    owners.push(poppedOwners[j + 1]);
+                    owners.push(poppedOwners[j + 1]); // shout out to moltam89!! https://github.com/austintgriffith/maas/pull/2/commits/e981c5fa5b4d25a1f0946471b876f9a002a9a82b
                     unchecked {
                         ++j;
                     }
@@ -278,43 +254,6 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         return _hash.toEthSignedMessageHash().recover(_signature);
     }
 
-    function checkUpkeep(
-        bytes memory /* checkData */
-    )
-        public
-        view
-        override
-        returns (
-            bool upkeepNeeded,
-            bytes memory /* performData */
-        )
-    {
-        upkeepNeeded = oracle.checkETHPrice(lowerThreshold);
-        // To get rid of the warning
-        return (upkeepNeeded, "0x0");
-        // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.
-    }
-
-    function performUpkeep(
-        bytes calldata /* performData */
-    ) external override {
-        //We highly recommend revalidating the upkeep in the performUpkeep function
-        (bool upkeepNeeded, ) = checkUpkeep("");
-        require(upkeepNeeded, "Upkeep not needed");
-        // 1. Add 1 signature
-        // updateSignaturesRequired(signaturesRequired - 1);
-        // 2. Set signature needed to 1
-        // updateSignaturesRequired(1);
-        // 3. Automatically distribute funds equally to recipients address (owners) if funds are over withdraw balance
-        if (address(this).balance >= withdrawnBalance) {
-            uint dividends = address(this).balance / owners.length;
-            for (uint i = 0; i < owners.length; i++) {
-                (bool success, ) = msg.sender.call{value: dividends}("");
-                require(success, "transfer failed");
-            }
-        }
-    }
-
     receive() external payable {
         emit Deposit(msg.sender, msg.value, address(this).balance);
     }
@@ -322,4 +261,40 @@ contract MultiSigWallet is KeeperCompatibleInterface {
     function numberOfOwners() public view returns (uint256) {
         return owners.length;
     }
+
+    // function checkUpkeep(
+    //     bytes memory /* checkData */
+    // )
+    //     public
+    //     view
+    //     override
+    //     returns (
+    //         bool upkeepNeeded,
+    //         bytes memory /* performData */
+    //     )
+    // {
+    //     upkeepNeeded = oracle.checkETHPrice(lowerThreshold);
+    //     // To get rid of the warning
+    //     return (upkeepNeeded, "0x0");
+    //     // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.
+    // }
+
+    // function performUpkeep(
+    //     bytes calldata /* performData */
+    // ) external override {
+    //     //We highly recommend revalidating the upkeep in the performUpkeep function
+    //     (bool upkeepNeeded, ) = checkUpkeep("");
+    //     // 1. Add 1 signature
+    //     // updateSignaturesRequired(signaturesRequired - 1);
+    //     // 2. Set signature needed to 1
+    //     // updateSignaturesRequired(1);
+    //     // 3. Automatically distribute funds equally to recipients address (owners) if funds are over withdraw balance
+    //     if (upkeepNeeded) {
+    //         uint dividends = address(this).balance / owners.length;
+    //         for (uint i = 0; i < owners.length; i++) {
+    //             (bool success, ) = msg.sender.call{value: dividends}("");
+    //             // require(success, "transfer failed");
+    //         }
+    //     }
+    // }
 }

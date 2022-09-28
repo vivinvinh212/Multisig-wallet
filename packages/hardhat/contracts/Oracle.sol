@@ -15,11 +15,11 @@ contract Oracle {
      * Reserves Address: 0xB622b7D6d9131cF6A1230EBa91E5da58dbea6F59
      */
     constructor() {
-        WBTC = IERC20(0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599);
+        // WBTC = IERC20(0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599);
         ETH = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
-        reservesWBTC = AggregatorV3Interface(
-            0xB622b7D6d9131cF6A1230EBa91E5da58dbea6F59
-        );
+        // reservesWBTC = AggregatorV3Interface(
+        //     0xB622b7D6d9131cF6A1230EBa91E5da58dbea6F59
+        // );
     }
 
     function getETHLatestPrice() public view returns (int) {
