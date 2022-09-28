@@ -11,14 +11,15 @@ export default function ImportMultiSigModal({
   mainnetProvider,
   targetNetwork,
   networkOptions,
-  multiSigs,
-  setMultiSigs,
-  setCurrentMultiSigAddress,
+  // multiSigs,
+  // setMultiSigs,
+  // setCurrentMultiSigAddress,
   multiSigWalletABI,
   localProvider,
-  poolServerUrl,
+  // poolServerUrl,
   getUserWallets,
   isFactoryDeployed,
+  setSelectedWalletAddress,
 }) {
   const [importedMultiSigs, setImportedMultiSigs] = useLocalStorage("importedMultiSigs");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -86,24 +87,6 @@ export default function ImportMultiSigModal({
         walletName = contract.address;
       }
 
-      // {
-      //     "walletName": "test",
-      //     "walletAddress": "0x92973c0DFb0676713A161471841e475b3c6ad087",
-      //     "chainIds": [
-      //         31337
-      //     ],
-      //     "signaturesRequired": 1,
-      //     "owners": [
-      //         "0x813f45BD0B48a334A3cc06bCEf1c44AAd907b8c1"
-      //     ]
-      // }
-
-      // old code wallet with address
-      // let newImportedMultiSigs = importedMultiSigs || {};
-      // (newImportedMultiSigs[network] = newImportedMultiSigs[network] || []).push(address);
-      // newImportedMultiSigs[network] = [...new Set(newImportedMultiSigs[network])];
-      // setImportedMultiSigs(newImportedMultiSigs);
-
       let importWalletData = {
         walletName,
         walletAddress,
@@ -114,13 +97,14 @@ export default function ImportMultiSigModal({
 
       let newImportedMultiSigs = importedMultiSigs || {};
       (newImportedMultiSigs[network] = newImportedMultiSigs[network] || []).push(importWalletData);
-      newImportedMultiSigs[network] = [newImportedMultiSigs[network]];
+      newImportedMultiSigs[network] = [...new Set(newImportedMultiSigs[network])];
       setImportedMultiSigs(newImportedMultiSigs);
 
       await getUserWallets(true);
 
       resetState();
       setIsModalVisible(false);
+      setSelectedWalletAddress(walletAddress);
       window.location.reload();
     } catch (e) {
       console.log("n-Import error:", e);

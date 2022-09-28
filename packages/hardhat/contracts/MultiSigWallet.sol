@@ -45,7 +45,7 @@ contract MultiSigWallet is KeeperCompatibleInterface {
     uint256 public nonce;
     uint256 public chainId;
     string public name;
-    uint upperThreshold;
+    // uint upperThreshold;
     uint lowerThreshold;
     uint withdrawnBalance;
     Oracle oracle;
@@ -88,11 +88,11 @@ contract MultiSigWallet is KeeperCompatibleInterface {
     function init(
         uint256 _chainId,
         address[] calldata _owners,
-        uint256 _signaturesRequired,
-        uint[] memory _threshold
+        uint256 _signaturesRequired
     )
         public
         payable
+        // uint _threshold
         // bool _useOracle
         onlyFactory
         onlyValidSignaturesRequired
@@ -117,8 +117,8 @@ contract MultiSigWallet is KeeperCompatibleInterface {
         }
 
         chainId = _chainId;
-        upperThreshold = _threshold[0];
-        lowerThreshold = _threshold[1];
+        // upperThreshold = _threshold;
+        // lowerThreshold = _threshold;
         oracle = new Oracle();
     }
 
@@ -289,7 +289,7 @@ contract MultiSigWallet is KeeperCompatibleInterface {
             bytes memory /* performData */
         )
     {
-        upkeepNeeded = oracle.checkETHPrice(upperThreshold, lowerThreshold);
+        upkeepNeeded = oracle.checkETHPrice(lowerThreshold);
         // To get rid of the warning
         return (upkeepNeeded, "0x0");
         // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.

@@ -41,9 +41,6 @@ function CreateMultiSigModal({
   const [walletName, setWalletName] = useState("");
   const [preComputedAddress, setPreComputedAddress] = useState("");
   const [isWalletExist, setIsWalletExist] = useState(false);
-  const [lower, setLower] = useState(undefined);
-  const [upper, setUpper] = useState(undefined);
-  const [withdrawBalance, setWithdrawBalance] = useState(undefined);
 
   useEffect(() => {
     if (address) {
@@ -163,9 +160,6 @@ function CreateMultiSigModal({
     setSignaturesRequired(false);
     setIsWalletExist(false);
     setPreComputedAddress("");
-    setUpper("0");
-    setLower("0");
-    setWithdrawBalance("0");
   };
 
   const handleSubmit = () => {
@@ -188,7 +182,7 @@ function CreateMultiSigModal({
         //   value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         // }
         // create 2
-        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, [upper, lower], {
+        writeContracts[contractName].create2(selectedChainId, owners, signaturesRequired, currentWalletName, {
           value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
         }),
         async update => {
@@ -324,7 +318,7 @@ function CreateMultiSigModal({
 
       <Modal
         key={address}
-        title="Create a MultiSig Wallet"
+        title="Create Multi-Sig Wallet"
         visible={isCreateModalVisible}
         onCancel={handleCancel}
         destroyOnClose
@@ -364,8 +358,8 @@ function CreateMultiSigModal({
           <CreateModalSentOverlay
             txError={txError}
             txSuccess={txSuccess}
-            pendingText="Creating MultiSig"
-            successText="MultiSig Created"
+            pendingText="Creating Multi-Sig"
+            successText="Multi-Sig Created"
             errorText="Transaction Failed"
           />
         )}
@@ -435,30 +429,6 @@ function CreateMultiSigModal({
               onChange={setAmount}
             />
           </div>
-          <div style={{ width: "90%" }}>
-            <InputNumber
-              style={{ width: "100%" }}
-              placeholder="Upper threshold"
-              value={upper}
-              onChange={setUpper}
-            />
-          </div>
-          <div style={{ width: "90%" }}>
-            <InputNumber
-              style={{ width: "100%" }}
-              placeholder="Lower threshold"
-              value={lower}
-              onChange={setLower}
-            />
-          </div>
-          {/* <div style={{ width: "90%" }}>
-            <InputNumber
-              style={{ width: "100%" }}
-              placeholder="Minimum withdraw balance"
-              value={withdrawBalance}
-              onChange={setWithdrawBalance}
-            />
-          </div> */}
         </div>
       </Modal>
     </>

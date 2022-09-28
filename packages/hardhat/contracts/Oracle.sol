@@ -57,13 +57,7 @@ contract Oracle {
     //     return getWBTCLatestReserves() >= int(getWBTCSupply());
     // }
 
-    function checkETHPrice(uint upperThreshold, uint lowerThreshold)
-        public
-        view
-        returns (bool)
-    {
-        return
-            getETHLatestPrice() > int(upperThreshold) ||
-            getETHLatestPrice() < int(lowerThreshold);
+    function checkETHPrice(uint lowerThreshold) public view returns (bool) {
+        return getETHLatestPrice() < int(lowerThreshold);
     }
 }

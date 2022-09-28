@@ -17,6 +17,7 @@ export { default as ThemeSwitch } from "./ThemeSwitch";
 export { default as Timeline } from "./Timeline";
 export { default as TokenBalance } from "./TokenBalance";
 export { default as Wallet } from "./Wallet";
+export { default as WalletImport } from "./WalletImport";
 export { default as L2Bridge } from "./L2Bridge";
 export { default as NetworkDisplay } from "./NetworkDisplay";
 export { default as FaucetHint } from "./FaucetHint";
@@ -25,6 +26,7 @@ export { default as MultiAddressInput } from "./MultiAddressInput";
 export { default as TenderlySimulation } from "./TenderlySimulation";
 export { default as TokenSelect } from "./TokenSelect";
 export { default as WalletConnectInput } from "./WalletConnectInput";
+export { default as IFrame } from "./IFrame";
 
 export { default as TransactionListItem } from "./MultiSig/TransactionListItem";
 export { default as Owners } from "./MultiSig/Owners";

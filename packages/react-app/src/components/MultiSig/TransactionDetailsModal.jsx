@@ -13,12 +13,11 @@ export default function TransactionDetailsModal({
   showFooter = false,
   to = false,
   value = false,
-  type = false,
+  type = "",
 }) {
   return (
     <Modal
-      // title="Transaction Details"
-      title={type ? "Wallect Connect Transaction Details" : "Transaction Details"}
+      title={`${ type } Transaction Details`}
       visible={visible}
       onCancel={handleCancel}
       destroyOnClose
@@ -28,13 +27,13 @@ export default function TransactionDetailsModal({
       footer={
         showFooter
           ? [
-              <Button key="cancel" onClick={handleCancel}>
-                Cancel
-              </Button>,
-              <Button key="ok" type="primary" onClick={handleOk}>
-                Propose
-              </Button>,
-            ]
+            <Button key="cancel" onClick={handleCancel}>
+              Cancel
+            </Button>,
+            <Button key="ok" type="primary" onClick={handleOk}>
+              Propose
+            </Button>,
+          ]
           : null
       }
     >
@@ -74,6 +73,15 @@ export default function TransactionDetailsModal({
                 </div>
               );
             } else if (element.type === "uint256") {
+
+              //first try toNumber
+              let numberDisplay = ""
+              try{
+                numberDisplay = ""+txnInfo.args[index].toNumber()
+              }catch(e){
+                numberDisplay = ""+txnInfo.args[index].toString()
+              }
+
               return (
                 <p key={element.name}>
                   {element.name === "value" ? (
@@ -83,7 +91,7 @@ export default function TransactionDetailsModal({
                     </>
                   ) : (
                     <>
-                      <b>{element.name} : </b> {txnInfo.args[index] && txnInfo.args[index].toNumber()}
+                      <b>{element.name} : </b> {txnInfo.args[index] && numberDisplay}
                     </>
                   )}
                 </p>

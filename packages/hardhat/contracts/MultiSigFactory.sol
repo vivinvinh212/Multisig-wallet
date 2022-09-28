@@ -67,8 +67,7 @@ contract MultiSigFactory {
         uint256 _chainId,
         address[] calldata _owners,
         uint256 _signaturesRequired,
-        string calldata _name,
-        uint[] memory _threshold
+        string calldata _name // uint _threshold
     ) public payable {
         uint256 id = numberOfMultiSigs();
 
@@ -95,7 +94,7 @@ contract MultiSigFactory {
         /**----------------------
          * init remaining values
          * ---------------------*/
-        multiSig.init(_chainId, _owners, _signaturesRequired, _threshold);
+        multiSig.init(_chainId, _owners, _signaturesRequired);
 
         multiSigs.push(multiSig);
         existsMultiSig[address(multiSig_address)] = true;
