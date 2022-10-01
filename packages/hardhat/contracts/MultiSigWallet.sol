@@ -6,7 +6,6 @@ pragma solidity >=0.8.0 <0.9.0;
 pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "./MultiSigFactory.sol";
-import "./Oracle.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
 //custom errors
@@ -41,7 +40,6 @@ contract MultiSigWallet {
     mapping(address => bool) public isOwner;
 
     address[] public owners;
-    Oracle oracle;
     uint256 public signaturesRequired;
     uint256 public nonce;
     uint256 public chainId;
