@@ -64,7 +64,7 @@ A React-based multisig factory web3 dapp allowing user to create multisig wallet
 **Acknowledgement**
 This project was made possible with the support of scaffold-eth public template and examples of multisig functions
 
-- Live app: http://absorbing-bird.surge.sh/
+- Live app: https://maasify.surge.sh/
 
 - Verified rinkeby contract: https://goerli.etherscan.io/address/0x800Ae5E4B1371123F00A94a8Ae69df7B0855cD53
 
