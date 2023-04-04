@@ -4,6 +4,27 @@ Author: **Vinh Le**
 
 Date: **2 September 2022**
 
+# NFT Marketplace
+ NFT Marketplace for decentralized NFT listing and trading
+
+COMING SOON...
+
+### 🧩 Tech stack:
+- ReactJS
+- Hardhat 
+- Next.js
+- Ethers.js
+- Chainlink Keeper
+- Alchemy
+- Tailwindcss
+
+🧪 Tested with:
+- Slither
+- Echidna
+
+
+🏗️ Further Development:
+- Implement GSN (gasless tx).
 
 ### Overview
 
