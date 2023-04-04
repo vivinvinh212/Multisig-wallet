@@ -4,10 +4,6 @@ Author: **Vinh Le**
 
 Date: **2 September 2022**
 
-# NFT Marketplace
- NFT Marketplace for decentralized NFT listing and trading
-
-COMING SOON...
 
 ### 🧩 Tech stack:
 - ReactJS
